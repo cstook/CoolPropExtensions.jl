@@ -16,7 +16,9 @@ using Test
     pd = CoolPropExtensions.first_partial_deriv(water,
         mass_density, pressure, temperature)
     @test pd≈4.489626212601196e-7
-    work = CoolPropExtensions.isothermalwork(WorkingFluid("HEOS","Water"),
-        300.0, 10atm, 100atm, rtol=1e-8)
-    @test work ≈ 9128.426693091658
+    let
+        work = CoolPropExtensions.isothermalwork(WorkingFluid("HEOS","Water"),
+            300.0, 10atm, 100atm, rtol=1e-8)
+        @test work ≈ 9128.426693091658
+    end
 end

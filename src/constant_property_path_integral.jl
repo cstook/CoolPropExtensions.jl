@@ -1,16 +1,18 @@
 const density = Property("D")
 const pressuretemperature = InputPair("PT_INPUTS")
 
+
+
 function isothermalwork(fluid::WorkingFluid,
                         temperature,
                         pressure_initial,
                         pressure_final;
                         rtol=1e-8)
-    function abc(fluid,pressure)
+    function ρ(fluid,pressure,temperature)
         update(fluid, pressuretemperature, pressure, temperature)
         keyed_output(fluid, density)
     end
-    integeral, err = quadgk(x->1/abc(fluid,x),pressure_initial,pressure_final,rtol)
+    integeral, err = quadgk(x->1/ρ(fluid,x,temperature),pressure_initial,pressure_final,rtol=rtol)
     integeral
 end
 
