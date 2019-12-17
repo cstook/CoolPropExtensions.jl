@@ -21,6 +21,5 @@ function adiabaticwork(fluid::WorkingFluid,
                        temperature_initial,
                        temperature_final;
                        rtol=1e-8)
-    update(fluid, pressuretemperature, pressure, temperature)
 
 end
